@@ -106,17 +106,6 @@ class CollaboratorSelection(nn.Module):
         historical_x = historical_x * historical_x_enw
         return x, historical_x
 
-class EnhanceWeight(nn.Module):
-    def __init__(self):
-        super(EnhanceWeight, self).__init__()
-        self.fc = nn.Linear(1, 1)
-        self.tanhAug = nn.Tanh()
-
-    def forward(self, x):
-        x = self.fc(x)
-        x = self.tanhAug(x) + torch.Tensor([1.0]).cuda()
-        return x
-
 class TransformerFusion(nn.Module):
     def __init__(self, feature_dim):
         super(TransformerFusion, self).__init__()
